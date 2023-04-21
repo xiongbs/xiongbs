@@ -43,6 +43,11 @@ function parseChemical(str) {
   let num = 0;
   let val = '';
   const map = new Map();
+  /*
+  map: {
+    元素key：元素的数量
+  }
+  */
   while (i < ans.length) {
     let ch = ans[i];
     let next = ans[i + 1];
@@ -72,11 +77,13 @@ function parseChemical(str) {
     i++;
   }
   let entires = [...map.entries()];
+  // 按照首字母大小写 排序
   entires.sort((a, b) => {
     const [key1] = a;
     const [key2] = b;
     return key1.charCodeAt(0) - key2.charCodeAt(0);
   });
+  // 凭借字符串
   return entires.reduce((prev, current) => {
     const [key, value] = current;
     return prev + key + value;
@@ -84,6 +91,7 @@ function parseChemical(str) {
 }
 
 function generateSubstr(str, multiple) {
+  // multiple 倍数
   if (!str) {
     return str;
   }
@@ -182,3 +190,8 @@ console.log(parseChemical('K4[ON(SO3)2]2'));
 ```javascript
 
 ```
+
+## 总结
+递归调用  
+注意判断细节  
+最后的排序
